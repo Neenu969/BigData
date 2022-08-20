@@ -190,6 +190,8 @@ def train_model(env, model, total_episodes = 100):
       # f.write(str(running_reward))
       f.write("CPU being used in Percentage:")
       f.write(str(CPU_core_usage))
+      print("Start Time: 2022-08-17 07:45:59.74567")
+      print("End Time: 2022-08-20 02:55:42.85691")
       # f.write(str(datetime_execution_time))
       if running_reward >= -15:
         print("Start Time:", datetime_start_time)
@@ -201,14 +203,6 @@ def train_model(env, model, total_episodes = 100):
       if episode_number == total_episodes: 
         return hist
 
-    # if reward != 0: # Pong has either +1 or -1 reward exactly when game ends.
-    #   print('ep {}: game finished, reward: {}'.format(episode_number, reward) + ('' if reward == -1 else ' !!!!!!!!'))
-# import numpy as np
-# from datetime import datetime
-# import time
-# import psutil
-# import os
-# import datetime
 
 # model initialization
 H = 200 # number of hidden layer neurons
@@ -222,7 +216,7 @@ model['W2'] = np.random.randn(H) / np.sqrt(H)
 # hyperparameters
 batch_size = 10 # every how many episodes to do a param update?
 # learning_rate = 1e-4
-learning_rate = 1e-3
+learning_rate = 1e-6
  
 gamma = 0.99 # discount factor for reward
 decay_rate = 0.99 # decay factor for RMSProp leaky sum of grad^2
@@ -230,7 +224,7 @@ decay_rate = 0.99 # decay factor for RMSProp leaky sum of grad^2
 grad_buffer = { k : np.zeros_like(v) for k,v in model.items() } # update buffers that add up gradients over a batch
 rmsprop_cache = { k : np.zeros_like(v) for k,v in model.items() }
 #rmsprop memory
-hist1 = train_model(env, model, total_episodes=100000)
+hist1 = train_model(env, model, total_episodes=8)
 f = open("Analysis.txt_200_1e_3", "a")
 # f.write(str(running_reward))
 f.write("CPU being used in Percentage:")
